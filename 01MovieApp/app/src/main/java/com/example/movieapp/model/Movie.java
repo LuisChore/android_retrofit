@@ -1,11 +1,15 @@
 
 package com.example.movieapp.model;
 
+import android.widget.ImageView;
+
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
+import androidx.databinding.BindingAdapter;
 
 import java.util.List;
 
+import com.bumptech.glide.Glide;
 import com.example.movieapp.BR;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -81,5 +85,12 @@ public class Movie extends BaseObservable {
         this.voteAverage = voteAverage;
         notifyPropertyChanged(BR.voteAverage);
     }
+
+    @BindingAdapter({"posterPath"})
+    public  static void loadImage(ImageView  imageView, String imageUrl){
+        String imagePath = "https://image.tmdb.org/t/p/w500/" + imageUrl;
+        Glide.with(imageView.getContext()).load(imagePath).into(imageView);
+    }
+
 
 }
